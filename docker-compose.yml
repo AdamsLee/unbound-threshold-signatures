@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  threashold-sig-server:
+    image: adamslee/unbound-crypto-mpc
+    container_name: threashold-sig-server
+    build: 
+      context: .
+    volumes:
+      - ./crypto-mpc-data:/usr/share/blockchain-crypto-mpc/data
+    # networks:
+    #   - default
+    #   - threashold-sig-net
+    ports:
+      - "15435:15435"
+        
+  threashold-sig-client:
+    image: adamslee/unbound-crypto-mpc
+    container_name: threashold-sig-client
+    build: 
+      context: .
+    volumes:
+      - ./crypto-mpc-data:/usr/share/blockchain-crypto-mpc/data
+    # networks:
+    #   - default
+    #   - threashold-sig-net
+    # external_links:
+    #   - threashold-sig-server
+
+# networks:
+#   threashold-sig-net:
+#     external: true
+
+volumes:
+  crypto-mpc-data:
