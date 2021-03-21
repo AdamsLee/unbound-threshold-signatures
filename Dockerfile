@@ -30,6 +30,6 @@ RUN apt-get update && \
 
 EXPOSE 15435
 
-VOLUME ["/usr/share/blockchain-crypto-mpc/data"]
+VOLUME ["/usr/share/blockchain-crypto-mpc/data", "/usr/share/workspace-crypto-mpc"]
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
