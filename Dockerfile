@@ -28,6 +28,8 @@ RUN apt-get update && \
     apt-get install -y iputils-ping && \
     apt-get install -y telnet
 
+RUN pip3 install python-bitcoinlib ecdsa
+
 EXPOSE 15435
 
 VOLUME ["/usr/share/blockchain-crypto-mpc/data", "/usr/share/workspace-crypto-mpc"]

@@ -26,16 +26,6 @@ docker-compose exec threashold-sig-server bash
     python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --type ECDSA --command generate --out_file /usr/share/blockchain-crypto-mpc/data/key_share_client.bin --host threashold-sig-server
     ```
     - 成功完成密钥生成，验证宿主机crypto-mpc-data目录下已经新创建了key_share_client.bin和key_share_server.bin两个文件
-* 签名    
-    - 回到服务方容器，进行签名
-    ```
-    python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --in_file /usr/share/blockchain-crypto-mpc/data/key_share_server.bin --data_file /usr/share/blockchain-crypto-mpc/data/data.txt --server --host threashold-sig-server 
-    ```
-    - 回到另一方容器进行签名
-    ```
-    python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --type ECDSA --command sign --in_file /usr/share/blockchain-crypto-mpc/data/key_share_client.bin --data_file /usr/share/blockchain-crypto-mpc/data/data.txt --host threashold-sig-server --out_file /usr/share/blockchain-crypto-mpc/data/sign_client.bin
-    ```
-    - 完成签名，验证宿主机crypto-mpc-data目录下已经生成了签名文件sign_client.bin
 
 * 获取公钥
     - 如要获取公钥，可以通过以下方法：回到服务方容器，
@@ -47,6 +37,18 @@ docker-compose exec threashold-sig-server bash
     python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --type ECDSA --command getpubkey --in_file /usr/share/blockchain-crypto-mpc/data/key_share_client.bin --host threashold-sig-server --out_file /usr/share/blockchain-crypto-mpc/data/pubkey_client.txt
     ```
     - 两方获得的公钥信息应该是一样的。另外在服务方的console输出了公钥对应的BTC的测试网地址
+
+* 签名    
+    - 回到服务方容器，进行签名
+    ```
+    python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --in_file /usr/share/blockchain-crypto-mpc/data/key_share_server.bin --data_file /usr/share/blockchain-crypto-mpc/data/data.txt --server --host threashold-sig-server 
+    ```
+    - 回到另一方容器进行签名
+    ```
+    python3.6 /usr/share/workspace-crypto-mpc/python/mpc_demo.py --type ECDSA --command sign --in_file /usr/share/blockchain-crypto-mpc/data/key_share_client.bin --data_file /usr/share/blockchain-crypto-mpc/data/data.txt --host threashold-sig-server --out_file /usr/share/blockchain-crypto-mpc/data/sign_client.bin
+    ```
+    - 完成签名，验证宿主机crypto-mpc-data目录下已经生成了签名文件sign_client.bin
+
 
 * 验证签名
     - 如要需要验证输出的签名，可以通过以下方法：回到服务方容器，
