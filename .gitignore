@@ -3,3 +3,4 @@ crypto-mpc-data/key_share_server.bin
 crypto-mpc-data/sign_client.bin
 crypto-mpc-data/pubkey_client.txt
 crypto-mpc-data/pubkey_server.txt
+crypto-mpc-data/data.txt
